@@ -39,16 +39,16 @@
             // label1
             // 
             this.label1.AutoSize = true;
-            this.label1.Location = new System.Drawing.Point(111, 99);
+            this.label1.Location = new System.Drawing.Point(152, 93);
             this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(153, 13);
+            this.label1.Size = new System.Drawing.Size(160, 13);
             this.label1.TabIndex = 0;
-            this.label1.Text = "Created by Oleg Ch. | Amorphix";
+            this.label1.Text = "Created by Amorphix ( Oleg Ch. )";
             // 
             // linkLabel1
             // 
             this.linkLabel1.AutoSize = true;
-            this.linkLabel1.Location = new System.Drawing.Point(70, 63);
+            this.linkLabel1.Location = new System.Drawing.Point(85, 59);
             this.linkLabel1.Name = "linkLabel1";
             this.linkLabel1.Size = new System.Drawing.Size(208, 13);
             this.linkLabel1.TabIndex = 1;
@@ -59,7 +59,7 @@
             // label2
             // 
             this.label2.AutoSize = true;
-            this.label2.Location = new System.Drawing.Point(271, 99);
+            this.label2.Location = new System.Drawing.Point(318, 93);
             this.label2.Name = "label2";
             this.label2.Size = new System.Drawing.Size(61, 13);
             this.label2.TabIndex = 2;
@@ -69,7 +69,7 @@
             // label3
             // 
             this.label3.AutoSize = true;
-            this.label3.Location = new System.Drawing.Point(86, 41);
+            this.label3.Location = new System.Drawing.Point(98, 37);
             this.label3.Name = "label3";
             this.label3.Size = new System.Drawing.Size(178, 13);
             this.label3.TabIndex = 3;
@@ -78,17 +78,18 @@
             // label4
             // 
             this.label4.AutoSize = true;
-            this.label4.Location = new System.Drawing.Point(10, 18);
+            this.label4.Location = new System.Drawing.Point(12, 9);
             this.label4.Name = "label4";
-            this.label4.Size = new System.Drawing.Size(322, 13);
+            this.label4.Size = new System.Drawing.Size(371, 13);
             this.label4.TabIndex = 4;
-            this.label4.Text = "This is a small tool, that simplifies creating networks and using them";
+            this.label4.Text = "This is a small tool, that simplifies creating virtual wifi networks and using th" +
+    "em";
             // 
             // AboutForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(348, 124);
+            this.ClientSize = new System.Drawing.Size(387, 117);
             this.Controls.Add(this.label4);
             this.Controls.Add(this.label3);
             this.Controls.Add(this.label2);
@@ -100,7 +101,7 @@
             this.MinimizeBox = false;
             this.Name = "AboutForm";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
-            this.Text = "About NetworkTool v1.0";
+            this.Text = "About NetworkTool v1.1";
             this.Load += new System.EventHandler(this.AboutForm_Load);
             this.ResumeLayout(false);
             this.PerformLayout();

@@ -1,15 +1,6 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.ComponentModel;
-using System.Data;
-using System.Drawing;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows.Forms;
 using System.Diagnostics;
-using System.Resources;
-using System.Reflection;
 using System.IO;
 using System.Text.RegularExpressions;
 
@@ -24,10 +15,12 @@ namespace NetworkTool
         public String stopHostedNetwork = "netsh wlan stop hostednetwork";
         public String showHostedNetwork = "netsh wlan show hostednetwork";
 
+        public String balloonTitle = "Virtual WiFi network status";
+
         public Form1()
         {
             InitializeComponent();
-            notifyIcon1.Visible = true;
+            notifyTrayIcon.Visible = true;
             this.Visible = false;
         }
 
@@ -65,8 +58,8 @@ namespace NetworkTool
 
                 // check network creation status
                 if( getNetworkStatus() )
-                    notifyIcon1.ShowBalloonTip(3000, "WiFi network status", "WiFi network successfully created", ToolTipIcon.Info);
-                else notifyIcon1.ShowBalloonTip(3000, "WiFi network status", "Failed to create network", ToolTipIcon.Warning);
+                    notifyTrayIcon.ShowBalloonTip(3000, balloonTitle, "WiFi network successfully created", ToolTipIcon.Info);
+                else notifyTrayIcon.ShowBalloonTip(3000, balloonTitle, "Failed to create network", ToolTipIcon.Warning);
             }
             catch (Exception ex) { MessageBox.Show("Error " + ex.ToString() ); };
         }
@@ -80,8 +73,8 @@ namespace NetworkTool
 
                 // check network creation status
                 if (getNetworkStatus())
-                    notifyIcon1.ShowBalloonTip(3000, "WiFi network status", "WiFi network successfully closed", ToolTipIcon.Info);
-                else notifyIcon1.ShowBalloonTip(3000, "WiFi network status", "Failed to close network", ToolTipIcon.Warning);
+                    notifyTrayIcon.ShowBalloonTip(3000, balloonTitle, "WiFi network successfully closed", ToolTipIcon.Info);
+                else notifyTrayIcon.ShowBalloonTip(3000, balloonTitle, "Failed to close network", ToolTipIcon.Warning);
             }
             catch (Exception ex) { MessageBox.Show("Error " + ex.ToString()); };
         }
@@ -126,6 +119,7 @@ namespace NetworkTool
             return s;
         }
 
+        // create/show about form
         public AboutForm a;
         private void aboutToolStripMenuItem_Click(object sender, EventArgs e)
         {
@@ -143,24 +137,46 @@ namespace NetworkTool
             return null;
         }
 
+        // show network status, bssid and number of clients
         private void showStatusToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            // show network status, bssid and number of clients
             try
             {
+                String result = "";
                 StreamReader r = ExecuteCommand(showHostedNetwork);
                 String s = r.ReadToEnd();
 
-                String result = "";
-                String status = new Regex(@"Status[\s]+:[\t\s]+(Started|Not started)").Match(s).Groups[1].Value.Trim();
-                String numOfClients = new Regex(@"Number of clients[\s]+:[\t\s]+([\w]+)").Match(s).Groups[1].Value.Trim();
-                String bssid = new Regex(@"BSSID[\s]+:[\t\s]+([\w:]+)").Match(s).Groups[1].Value.Trim();
+                // format string and trim
+                String trimmedResult = Regex.Replace(s, @"[\r\n]", "");
+                    trimmedResult = Regex.Replace(trimmedResult, @"\s+", " ");
+                    trimmedResult = Regex.Replace(trimmedResult, @"-+", "");
 
-                if (status == "Not started")
-                    result = "Network status: " + status;
-                else result = "Network status: " + status + "\nBSSID: " + bssid + "\nNumber of clients: " + numOfClients;
+                // get network status
+                GroupCollection status = new Regex(@"Status : (Started|Not started)").Match(trimmedResult).Groups;
+                
+                // get network BSSID
+                GroupCollection bssid = new Regex(@"BSSID : ([\w:]+)").Match(trimmedResult).Groups;
+                
+                // get network status
+                GroupCollection numOfClients = new Regex(@"Number of clients : ([\w]+)").Match(trimmedResult).Groups;
 
-                notifyIcon1.ShowBalloonTip(5000, "WiFi network status", result, ToolTipIcon.Info);
+                // get all authenticated devices
+                String mod = trimmedResult.Remove(0, trimmedResult.IndexOf("Number of clients"));
+                mod = Regex.Replace(mod, @"Number of clients[\s]+:[\t\s]+([\w]+)", "").Trim();
+
+                MatchCollection mc = new Regex(@"[\w\n:]+\s[\w]+").Matches(mod);
+                if (status[1].Value == "Not started")
+                    result = status[0].Value;
+                else
+                {
+                    result = status[0].Value + "\n" + bssid[0].Value + "\n" + numOfClients[0].Value;
+                    foreach (Match i in mc)
+                    {
+                        result += "\n\t" + i.Value;
+                    }
+                }
+
+                notifyTrayIcon.ShowBalloonTip(5000, balloonTitle, result, ToolTipIcon.Info);
             }
             catch (Exception ex)
             {
@@ -168,9 +184,9 @@ namespace NetworkTool
             }
         }
 
+        // show network status, bssid and number of clients
         private bool getNetworkStatus()
         {
-            // show network status, bssid and number of clients
             try
             {
                 StreamReader r = ExecuteCommand(showHostedNetwork);

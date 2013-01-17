@@ -30,8 +30,8 @@
         {
             this.components = new System.ComponentModel.Container();
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(Form1));
-            this.notifyIcon1 = new System.Windows.Forms.NotifyIcon(this.components);
-            this.contextMenuStrip1 = new System.Windows.Forms.ContextMenuStrip(this.components);
+            this.notifyTrayIcon = new System.Windows.Forms.NotifyIcon(this.components);
+            this.notifyMenuStrip = new System.Windows.Forms.ContextMenuStrip(this.components);
             this.createNetworkToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.closeNetworkToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.showStatusToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
@@ -40,21 +40,21 @@
             this.toolStripSeparator1 = new System.Windows.Forms.ToolStripSeparator();
             this.aboutToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.exitToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.contextMenuStrip1.SuspendLayout();
+            this.notifyMenuStrip.SuspendLayout();
             this.SuspendLayout();
             // 
-            // notifyIcon1
+            // notifyTrayIcon
             // 
-            this.notifyIcon1.ContextMenuStrip = this.contextMenuStrip1;
-            this.notifyIcon1.Icon = ((System.Drawing.Icon)(resources.GetObject("notifyIcon1.Icon")));
-            this.notifyIcon1.Text = "NetworkTool v1.0";
-            this.notifyIcon1.Visible = true;
-            this.notifyIcon1.Click += new System.EventHandler(this.notifyIcon1_Click);
-            this.notifyIcon1.MouseDoubleClick += new System.Windows.Forms.MouseEventHandler(this.notifyIcon1_MouseDoubleClick);
+            this.notifyTrayIcon.ContextMenuStrip = this.notifyMenuStrip;
+            this.notifyTrayIcon.Icon = ((System.Drawing.Icon)(resources.GetObject("notifyTrayIcon.Icon")));
+            this.notifyTrayIcon.Text = "NetworkTool v1.0";
+            this.notifyTrayIcon.Visible = true;
+            this.notifyTrayIcon.Click += new System.EventHandler(this.notifyIcon1_Click);
+            this.notifyTrayIcon.MouseDoubleClick += new System.Windows.Forms.MouseEventHandler(this.notifyIcon1_MouseDoubleClick);
             // 
-            // contextMenuStrip1
+            // notifyMenuStrip
             // 
-            this.contextMenuStrip1.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.notifyMenuStrip.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.createNetworkToolStripMenuItem,
             this.closeNetworkToolStripMenuItem,
             this.showStatusToolStripMenuItem,
@@ -63,8 +63,8 @@
             this.toolStripSeparator1,
             this.aboutToolStripMenuItem,
             this.exitToolStripMenuItem});
-            this.contextMenuStrip1.Name = "contextMenuStrip1";
-            this.contextMenuStrip1.Size = new System.Drawing.Size(155, 148);
+            this.notifyMenuStrip.Name = "contextMenuStrip1";
+            this.notifyMenuStrip.Size = new System.Drawing.Size(155, 148);
             // 
             // createNetworkToolStripMenuItem
             // 
@@ -132,15 +132,15 @@
             this.StartPosition = System.Windows.Forms.FormStartPosition.WindowsDefaultBounds;
             this.Text = "NetworkTool";
             this.WindowState = System.Windows.Forms.FormWindowState.Minimized;
-            this.contextMenuStrip1.ResumeLayout(false);
+            this.notifyMenuStrip.ResumeLayout(false);
             this.ResumeLayout(false);
 
         }
 
         #endregion
 
-        private System.Windows.Forms.NotifyIcon notifyIcon1;
-        private System.Windows.Forms.ContextMenuStrip contextMenuStrip1;
+        private System.Windows.Forms.NotifyIcon notifyTrayIcon;
+        private System.Windows.Forms.ContextMenuStrip notifyMenuStrip;
         private System.Windows.Forms.ToolStripMenuItem createNetworkToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem closeNetworkToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem optionsToolStripMenuItem;
