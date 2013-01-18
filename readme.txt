@@ -3,3 +3,4 @@ Networks are created by using netsh. This program creates, closes networks, show
 
 v1.1
 	+ now shows included devices and their MAC
+	+ fixed small bug when user clicked 'show status' when network is not started

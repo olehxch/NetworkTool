@@ -9,8 +9,8 @@ namespace NetworkTool
     public partial class Form1 : Form
     {
         //public String netshNetwork = "netsh wlan set hostednetwork mode=allow ssid=\"MSVWiFi\" key=\"netshkeyadmin\" keyUsage=persistent";
-            public String key = "netshkeyadmin";
-            public String ssid = "MSVWiFi";
+        public String key = "netshkeyadmin";
+        public String ssid = "MSVWiFi";
         public String startHostedNetwork = "netsh wlan start hostednetwork";
         public String stopHostedNetwork = "netsh wlan stop hostednetwork";
         public String showHostedNetwork = "netsh wlan show hostednetwork";
@@ -161,14 +161,14 @@ namespace NetworkTool
                 GroupCollection numOfClients = new Regex(@"Number of clients : ([\w]+)").Match(trimmedResult).Groups;
 
                 // get all authenticated devices
-                String mod = trimmedResult.Remove(0, trimmedResult.IndexOf("Number of clients"));
-                mod = Regex.Replace(mod, @"Number of clients[\s]+:[\t\s]+([\w]+)", "").Trim();
-
-                MatchCollection mc = new Regex(@"[\w\n:]+\s[\w]+").Matches(mod);
                 if (status[1].Value == "Not started")
                     result = status[0].Value;
                 else
                 {
+                    String mod = trimmedResult.Remove(0, trimmedResult.IndexOf("Number of clients"));
+                    mod = Regex.Replace(mod, @"Number of clients[\s]+:[\t\s]+([\w]+)", "").Trim();
+
+                    MatchCollection mc = new Regex(@"[\w\n:]+\s[\w]+").Matches(mod);
                     result = status[0].Value + "\n" + bssid[0].Value + "\n" + numOfClients[0].Value;
                     foreach (Match i in mc)
                     {
