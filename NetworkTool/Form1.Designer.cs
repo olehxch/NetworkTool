@@ -47,7 +47,7 @@
             // 
             this.notifyTrayIcon.ContextMenuStrip = this.notifyMenuStrip;
             this.notifyTrayIcon.Icon = ((System.Drawing.Icon)(resources.GetObject("notifyTrayIcon.Icon")));
-            this.notifyTrayIcon.Text = "NetworkTool v1.0";
+            this.notifyTrayIcon.Text = "NetworkTool v1.2";
             this.notifyTrayIcon.Visible = true;
             this.notifyTrayIcon.MouseClick += new System.Windows.Forms.MouseEventHandler(this.notifyIcon1_MouseClick);
             // 
