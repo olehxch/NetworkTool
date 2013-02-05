@@ -63,7 +63,7 @@
             this.label2.Name = "label2";
             this.label2.Size = new System.Drawing.Size(61, 13);
             this.label2.TabIndex = 2;
-            this.label2.Text = "17.01.2013";
+            this.label2.Text = "05.02.2013";
             this.label2.Click += new System.EventHandler(this.label2_Click);
             // 
             // label3
@@ -101,7 +101,7 @@
             this.MinimizeBox = false;
             this.Name = "AboutForm";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
-            this.Text = "About NetworkTool v1.1";
+            this.Text = "About NetworkTool v1.2";
             this.Load += new System.EventHandler(this.AboutForm_Load);
             this.ResumeLayout(false);
             this.PerformLayout();

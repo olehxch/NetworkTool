@@ -3,35 +3,40 @@ using System.Windows.Forms;
 using System.Diagnostics;
 using System.IO;
 using System.Text.RegularExpressions;
+using System.Threading;
 
 namespace NetworkTool
 {
     public partial class Form1 : Form
     {
-        //public String netshNetwork = "netsh wlan set hostednetwork mode=allow ssid=\"MSVWiFi\" key=\"netshkeyadmin\" keyUsage=persistent";
         public String key = "netshkeyadmin";
         public String ssid = "MSVWiFi";
         public String startHostedNetwork = "netsh wlan start hostednetwork";
         public String stopHostedNetwork = "netsh wlan stop hostednetwork";
         public String showHostedNetwork = "netsh wlan show hostednetwork";
-
         public String balloonTitle = "Virtual WiFi network status";
+        public Thread updateNetworkStatusIcon;
+        
+        private void Form1_Load(object sender, EventArgs e)
+        {
+        }
 
         public Form1()
         {
             InitializeComponent();
             notifyTrayIcon.Visible = true;
             this.Visible = false;
+
+            InitializeIcons();
+            updateNetworkStatusIcon = new Thread(delegate() { animateTrayIcon(notifyTrayIcon); });
+            updateNetworkStatusIcon.IsBackground = true;
+            updateNetworkStatusIcon.Start();
         }
 
-        private void notifyIcon1_MouseDoubleClick(object sender, MouseEventArgs e)
+        private void notifyIcon1_MouseClick(object sender, MouseEventArgs e)
         {
-
-        }
-
-        private void notifyIcon1_Click(object sender, EventArgs e)
-        {
-            
+            // show status and info about network
+            if (MouseButtons.Left == e.Button) showNetworkStatus();
         }
 
         private void exitToolStripMenuItem_Click(object sender, EventArgs e)
@@ -55,11 +60,6 @@ namespace NetworkTool
             {
                 ExecuteCommand(c);
                 ExecuteCommand(startHostedNetwork);
-
-                // check network creation status
-                if( getNetworkStatus() )
-                    notifyTrayIcon.ShowBalloonTip(3000, balloonTitle, "WiFi network successfully created", ToolTipIcon.Info);
-                else notifyTrayIcon.ShowBalloonTip(3000, balloonTitle, "Failed to create network", ToolTipIcon.Warning);
             }
             catch (Exception ex) { MessageBox.Show("Error " + ex.ToString() ); };
         }
@@ -67,15 +67,7 @@ namespace NetworkTool
         private void closeNetworkToolStripMenuItem_Click(object sender, EventArgs e)
         {
             // close created network
-            try
-            {
-                ExecuteCommand(stopHostedNetwork);
-
-                // check network creation status
-                if (getNetworkStatus())
-                    notifyTrayIcon.ShowBalloonTip(3000, balloonTitle, "WiFi network successfully closed", ToolTipIcon.Info);
-                else notifyTrayIcon.ShowBalloonTip(3000, balloonTitle, "Failed to close network", ToolTipIcon.Warning);
-            }
+            try { ExecuteCommand(stopHostedNetwork); }
             catch (Exception ex) { MessageBox.Show("Error " + ex.ToString()); };
         }
 
@@ -137,8 +129,7 @@ namespace NetworkTool
             return null;
         }
 
-        // show network status, bssid and number of clients
-        private void showStatusToolStripMenuItem_Click(object sender, EventArgs e)
+        public void showNetworkStatus()
         {
             try
             {
@@ -148,15 +139,15 @@ namespace NetworkTool
 
                 // format string and trim
                 String trimmedResult = Regex.Replace(s, @"[\r\n]", "");
-                    trimmedResult = Regex.Replace(trimmedResult, @"\s+", " ");
-                    trimmedResult = Regex.Replace(trimmedResult, @"-+", "");
+                trimmedResult = Regex.Replace(trimmedResult, @"\s+", " ");
+                trimmedResult = Regex.Replace(trimmedResult, @"-+", "");
 
                 // get network status
                 GroupCollection status = new Regex(@"Status : (Started|Not started)").Match(trimmedResult).Groups;
-                
+
                 // get network BSSID
                 GroupCollection bssid = new Regex(@"BSSID : ([\w:]+)").Match(trimmedResult).Groups;
-                
+
                 // get network status
                 GroupCollection numOfClients = new Regex(@"Number of clients : ([\w]+)").Match(trimmedResult).Groups;
 
@@ -176,12 +167,18 @@ namespace NetworkTool
                     }
                 }
 
-                notifyTrayIcon.ShowBalloonTip(5000, balloonTitle, result, ToolTipIcon.Info);
+                notifyTrayIcon.ShowBalloonTip(4000, balloonTitle, result, ToolTipIcon.Info);
             }
             catch (Exception ex)
             {
-                MessageBox.Show( ex.Message );
+                MessageBox.Show(ex.Message);
             }
+        }
+
+        // show network status, bssid and number of clients
+        private void showStatusToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            showNetworkStatus();
         }
 
         // show network status, bssid and number of clients
@@ -201,5 +198,39 @@ namespace NetworkTool
             catch (Exception ex) { MessageBox.Show(ex.Message); return false; }
         }
 
+        private void notifyMenuStrip_Opening(object sender, System.ComponentModel.CancelEventArgs e)
+        {
+
+        }
+
+        // create animated icons
+        public System.Drawing.Icon[] trayIcons = new System.Drawing.Icon[4];
+        public void InitializeIcons()
+        {
+            trayIcons[0] = NetworkTool.Properties.Resources.stat_sys_signal_1;
+            trayIcons[1] = NetworkTool.Properties.Resources.stat_sys_signal_2;
+            trayIcons[2] = NetworkTool.Properties.Resources.stat_sys_signal_3;
+            trayIcons[3] = NetworkTool.Properties.Resources.stat_sys_signal_4;
+        }
+
+        // creates an animation for tray icon
+        private void animateTrayIcon(NotifyIcon n)
+        {
+            int i = 0;
+            while (true)
+            {
+                try {
+                    if (getNetworkStatus()) {
+                            // show animated icon
+                            if (i >= trayIcons.Length) i = 0;
+                            n.Icon = trayIcons[i];
+                            Thread.Sleep(400);
+                            i++;
+                        }
+                    else notifyTrayIcon.Icon = NetworkTool.Properties.Resources.stat_sys_signal_0; 
+                }
+                catch (Exception e) { };
+            }
+        }
     }
 }

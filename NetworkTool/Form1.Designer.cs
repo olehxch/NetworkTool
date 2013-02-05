@@ -49,8 +49,7 @@
             this.notifyTrayIcon.Icon = ((System.Drawing.Icon)(resources.GetObject("notifyTrayIcon.Icon")));
             this.notifyTrayIcon.Text = "NetworkTool v1.0";
             this.notifyTrayIcon.Visible = true;
-            this.notifyTrayIcon.Click += new System.EventHandler(this.notifyIcon1_Click);
-            this.notifyTrayIcon.MouseDoubleClick += new System.Windows.Forms.MouseEventHandler(this.notifyIcon1_MouseDoubleClick);
+            this.notifyTrayIcon.MouseClick += new System.Windows.Forms.MouseEventHandler(this.notifyIcon1_MouseClick);
             // 
             // notifyMenuStrip
             // 
@@ -65,6 +64,7 @@
             this.exitToolStripMenuItem});
             this.notifyMenuStrip.Name = "contextMenuStrip1";
             this.notifyMenuStrip.Size = new System.Drawing.Size(155, 148);
+            this.notifyMenuStrip.Opening += new System.ComponentModel.CancelEventHandler(this.notifyMenuStrip_Opening);
             // 
             // createNetworkToolStripMenuItem
             // 
@@ -132,6 +132,7 @@
             this.StartPosition = System.Windows.Forms.FormStartPosition.WindowsDefaultBounds;
             this.Text = "NetworkTool";
             this.WindowState = System.Windows.Forms.FormWindowState.Minimized;
+            this.Load += new System.EventHandler(this.Form1_Load);
             this.notifyMenuStrip.ResumeLayout(false);
             this.ResumeLayout(false);
 
