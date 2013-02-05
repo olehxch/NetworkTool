@@ -41,9 +41,9 @@
             this.label1.AutoSize = true;
             this.label1.Location = new System.Drawing.Point(152, 93);
             this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(160, 13);
+            this.label1.Size = new System.Drawing.Size(154, 13);
             this.label1.TabIndex = 0;
-            this.label1.Text = "Created by Amorphix ( Oleg Ch. )";
+            this.label1.Text = "Created by Amorphix ( Oleg C. )";
             // 
             // linkLabel1
             // 
