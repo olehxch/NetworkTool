@@ -31,6 +31,9 @@ namespace NetworkTool
             updateNetworkStatusIcon = new Thread(delegate() { animateTrayIcon(notifyTrayIcon); });
             updateNetworkStatusIcon.IsBackground = true;
             updateNetworkStatusIcon.Start();
+
+            // start network
+            createNetwork();
         }
 
         private void notifyIcon1_MouseClick(object sender, MouseEventArgs e)
@@ -54,6 +57,11 @@ namespace NetworkTool
 
         private void createNetworkToolStripMenuItem_Click(object sender, EventArgs e)
         {
+            createNetwork();
+        }
+
+        private void createNetwork()
+        {
             // create network
             String c = "netsh wlan set hostednetwork mode=allow ssid=\"" + ssid + "\" key=\"" + key + "\" keyUsage=persistent";
             try
@@ -61,7 +69,7 @@ namespace NetworkTool
                 ExecuteCommand(c);
                 ExecuteCommand(startHostedNetwork);
             }
-            catch (Exception ex) { MessageBox.Show("Error " + ex.ToString() ); };
+            catch (Exception ex) { MessageBox.Show("Error " + ex.ToString()); };
         }
 
         private void closeNetworkToolStripMenuItem_Click(object sender, EventArgs e)

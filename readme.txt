@@ -10,3 +10,6 @@ v1.2
 	+ fixed with form bug(is was showing sometimes, but now not)
 	+ shows network status on left click on icon
 	+ updates network status automatically
+
+v1.2.1
+	+ Network automatically starts with starting program
