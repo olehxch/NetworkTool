@@ -17,10 +17,10 @@ v1.2.1
 	+ Network automatically starts with starting program
 	
 ## Screenshots
-![](http://i.imgur.com/OL5caX1.png?1 "")
+![](http://i.imgur.com/OL5caX1.png "")
 
-![](http://i.imgur.com/CR4v576.png?1 "")
+![](http://i.imgur.com/CR4v576.png "")
 
-![](http://i.imgur.com/CR4v576.png?1 "")
+![](http://i.imgur.com/CR4v576.png "")
 
-![](http://i.imgur.com/yhkGDrx.png?1 "")
+![](http://i.imgur.com/yhkGDrx.png "")
