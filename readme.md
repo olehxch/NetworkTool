@@ -21,6 +21,4 @@ v1.2.1
 
 ![](http://i.imgur.com/CR4v576.png "")
 
-![](http://i.imgur.com/CR4v576.png "")
-
-![](http://i.imgur.com/yhkGDrx.png "")
+![](http://i.imgur.com/xAPL12o.png?1 "")
