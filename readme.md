@@ -1,5 +1,7 @@
 Small program writed in C# and .NET which creates WiFi networks with one click
-Networks are created by using netsh. This program creates, closes networks, shows their status(Status, BSID and number of connected clients).
+Networks are created by using netsh. This program creates, closes networks, 
+shows their status(Status, BSID and number of connected clients). Generally this
+program is a GUI for 'netsh wlan'.
 
 v1.1
 	+ now shows included devices and their MAC
@@ -13,8 +15,17 @@ v1.2
 
 v1.2.1
 	+ Network automatically starts with starting program
+<<<<<<< HEAD:readme.txt
 
 v1.3.0
     + Shows main window UI with basic execution of commands
     + All strings moved to another special class
     + Date, website and version is now updated form resource file
+=======
+	
+## Screenshots
+![](http://i.imgur.com/OL5caX1.png "")
+
+![](http://i.imgur.com/CR4v576.png "")
+
+![](http://i.imgur.com/xAPL12o.png?1 "")
