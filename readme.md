@@ -15,17 +15,18 @@ v1.2
 
 v1.2.1
 	+ Network automatically starts with starting program
-<<<<<<< HEAD:readme.txt
 
 v1.3.0
     + Shows main window UI with basic execution of commands
     + All strings moved to another special class
     + Date, website and version is now updated form resource file
-=======
-	
+
 ## Screenshots
 ![](http://i.imgur.com/OL5caX1.png "")
 
-![](http://i.imgur.com/CR4v576.png "")
-
 ![](http://i.imgur.com/xAPL12o.png?1 "")
+
+![](http://i.imgur.com/SdGQ8Cj.png "")
+
+![](http://i.imgur.com/dhtng2T.png "")
+
