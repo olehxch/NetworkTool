@@ -1,5 +1,6 @@
 ###Latest release - v1.3
 Just copy binary file in /bin/NetworkTool.exe and you are ready to use it :)
+
 [Download latest version here](https://github.com/amorphix/NetworkTool/releases/tag/v1.3)
 
 ###About
