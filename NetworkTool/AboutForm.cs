@@ -15,21 +15,14 @@ namespace NetworkTool
         public AboutForm()
         {
             InitializeComponent();
+            this.Text = "About NetworkTool " + Properties.Resources.Version;
+            this.linkToSourceCode.Text = Properties.Resources.Website;
+            this.lastBuildDate.Text = Properties.Resources.LastBuildDate;
         }
 
         private void linkLabel1_LinkClicked(object sender, LinkLabelLinkClickedEventArgs e)
         {
-            System.Diagnostics.Process.Start("https://github.com/amorphix/NetworkTool");  
-        }
-
-        private void AboutForm_Load(object sender, EventArgs e)
-        {
-            
-        }
-
-        private void label2_Click(object sender, EventArgs e)
-        {
-
+            System.Diagnostics.Process.Start(Properties.Resources.Website);  
         }
     }
 }

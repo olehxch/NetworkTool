@@ -13,3 +13,8 @@ v1.2
 
 v1.2.1
 	+ Network automatically starts with starting program
+
+v1.3.0
+    + Shows main window UI with basic execution of commands
+    + All strings moved to another special class
+    + Date, website and version is now updated form resource file

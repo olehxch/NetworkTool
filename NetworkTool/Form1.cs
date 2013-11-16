@@ -11,21 +11,23 @@ namespace NetworkTool
     {
         public String key = "netshkeyadmin";
         public String ssid = "MSVWiFi";
-        public String startHostedNetwork = "netsh wlan start hostednetwork";
-        public String stopHostedNetwork = "netsh wlan stop hostednetwork";
-        public String showHostedNetwork = "netsh wlan show hostednetwork";
-        public String balloonTitle = "Virtual WiFi network status";
         public Thread updateNetworkStatusIcon;
         
         private void Form1_Load(object sender, EventArgs e)
-        {
-        }
+        {     }
 
         public Form1()
         {
             InitializeComponent();
+            this.Text = "Network Tool " + Properties.Resources.Version;
+            notifyTrayIcon.Text = "Network Tool " + Properties.Resources.Version;
             notifyTrayIcon.Visible = true;
-            this.Visible = false;
+            this.WindowState = FormWindowState.Minimized;
+            this.ShowInTaskbar = false;
+
+            this.SizeChanged += (object sender, EventArgs e) => {
+                if (WindowState == FormWindowState.Minimized) this.ShowInTaskbar = false;
+            };
 
             InitializeIcons();
             updateNetworkStatusIcon = new Thread(delegate() { animateTrayIcon(notifyTrayIcon); });
@@ -67,7 +69,7 @@ namespace NetworkTool
             try
             {
                 ExecuteCommand(c);
-                ExecuteCommand(startHostedNetwork);
+                ExecuteCommand(Commands.startHostedNetwork);
             }
             catch (Exception ex) { MessageBox.Show("Error " + ex.ToString()); };
         }
@@ -75,7 +77,7 @@ namespace NetworkTool
         private void closeNetworkToolStripMenuItem_Click(object sender, EventArgs e)
         {
             // close created network
-            try { ExecuteCommand(stopHostedNetwork); }
+            try { ExecuteCommand(Commands.stopHostedNetwork); }
             catch (Exception ex) { MessageBox.Show("Error " + ex.ToString()); };
         }
 
@@ -142,7 +144,7 @@ namespace NetworkTool
             try
             {
                 String result = "";
-                StreamReader r = ExecuteCommand(showHostedNetwork);
+                StreamReader r = ExecuteCommand(Commands.showHostedNetwork);
                 String s = r.ReadToEnd();
 
                 // format string and trim
@@ -175,7 +177,7 @@ namespace NetworkTool
                     }
                 }
 
-                notifyTrayIcon.ShowBalloonTip(4000, balloonTitle, result, ToolTipIcon.Info);
+                notifyTrayIcon.ShowBalloonTip(4000, Commands.balloonTitle, result, ToolTipIcon.Info);
             }
             catch (Exception ex)
             {
@@ -194,7 +196,7 @@ namespace NetworkTool
         {
             try
             {
-                StreamReader r = ExecuteCommand(showHostedNetwork);
+                StreamReader r = ExecuteCommand(Commands.showHostedNetwork);
                 String s = r.ReadToEnd();
 
                 String status = new Regex(@"Status[\s]+:[\t\s]+(Started|Not started)").Match(s).Groups[1].Value.Trim();
@@ -239,6 +241,124 @@ namespace NetworkTool
                 }
                 catch (Exception e) { };
             }
+        }
+
+        // Open main window
+        private void openWindowToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            this.WindowState = FormWindowState.Normal;
+            this.ShowInTaskbar = true;
+        }
+
+
+        private void showFilters_Click(object sender, EventArgs e)
+        {
+            try
+            {
+                StreamReader r = ExecuteCommand(Commands.Filters);
+                infoTextBox.Clear();
+                infoTextBox.Text = r.ReadToEnd().Trim();
+            }
+            catch (Exception ex) { MessageBox.Show(ex.Message); }
+        }
+
+        private void showDrivers_Click(object sender, EventArgs e)
+        {
+            try
+            {
+                StreamReader r = ExecuteCommand(Commands.Drivers);
+                infoTextBox.Clear();
+                infoTextBox.Text = r.ReadToEnd().Trim();
+            }
+            catch (Exception ex) { MessageBox.Show(ex.Message); }
+        }
+
+        private void showNetworks_Click(object sender, EventArgs e)
+        {
+            try
+            {
+                StreamReader r = ExecuteCommand(Commands.Networks);
+                infoTextBox.Clear();
+                infoTextBox.Text = r.ReadToEnd().Trim();
+            }
+            catch (Exception ex) { MessageBox.Show(ex.Message); }
+        }
+
+        private void showProfiles_Click(object sender, EventArgs e)
+        {
+            try
+            {
+                StreamReader r = ExecuteCommand(Commands.Profiles);
+                infoTextBox.Clear();
+                infoTextBox.Text = r.ReadToEnd().Trim();
+            }
+            catch (Exception ex) { MessageBox.Show(ex.Message); }
+        }
+
+        private void showSettings_Click(object sender, EventArgs e)
+        {
+            try
+            {
+                StreamReader r = ExecuteCommand(Commands.Settings);
+                infoTextBox.Clear();
+                infoTextBox.Text = r.ReadToEnd().Trim();
+            }
+            catch (Exception ex) { MessageBox.Show(ex.Message); }
+        }
+
+        private void showTracing_Click(object sender, EventArgs e)
+        {
+            try
+            {
+                StreamReader r = ExecuteCommand(Commands.Tracing);
+                infoTextBox.Clear();
+                infoTextBox.Text = r.ReadToEnd().Trim();
+            }
+            catch (Exception ex) { MessageBox.Show(ex.Message); }
+        }
+
+        private void showInterfaces_Click(object sender, EventArgs e)
+        {
+            try
+            {
+                StreamReader r = ExecuteCommand(Commands.Interfaces);
+                infoTextBox.Clear();
+                infoTextBox.Text = r.ReadToEnd().Trim();
+            }
+            catch (Exception ex) { MessageBox.Show(ex.Message); }
+        }
+
+        private void showHostedNetworkInfo_Click(object sender, EventArgs e)
+        {
+            try
+            {
+                StreamReader r = ExecuteCommand(Commands.HostedNetworks);
+                infoTextBox.Clear();
+                infoTextBox.Text = r.ReadToEnd().Trim();
+            }
+            catch (Exception ex) { MessageBox.Show(ex.Message); }
+        }
+
+        private void showExpCredentials_Click(object sender, EventArgs e)
+        {
+            try
+            {
+                StreamReader r = ExecuteCommand(Commands.ExplicitCredentials);
+                infoTextBox.Clear();
+                infoTextBox.Text = r.ReadToEnd().Trim();
+            }
+            catch (Exception ex) { MessageBox.Show(ex.Message); }
+        }
+
+        private void showBlockedNetworks_Click(object sender, EventArgs e)
+        {
+            try
+            {
+                StreamReader r = ExecuteCommand(Commands.BlockedNetworks);
+                infoTextBox.Clear();
+                infoTextBox.Text = r.ReadToEnd().Trim();
+            }
+            catch (Exception ex) { MessageBox.Show(ex.Message); }
         }
     }
 }

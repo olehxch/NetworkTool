@@ -30,8 +30,8 @@
         {
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(AboutForm));
             this.label1 = new System.Windows.Forms.Label();
-            this.linkLabel1 = new System.Windows.Forms.LinkLabel();
-            this.label2 = new System.Windows.Forms.Label();
+            this.linkToSourceCode = new System.Windows.Forms.LinkLabel();
+            this.lastBuildDate = new System.Windows.Forms.Label();
             this.label3 = new System.Windows.Forms.Label();
             this.label4 = new System.Windows.Forms.Label();
             this.SuspendLayout();
@@ -45,26 +45,25 @@
             this.label1.TabIndex = 0;
             this.label1.Text = "Created by Amorphix ( Oleg C. )";
             // 
-            // linkLabel1
+            // linkToSourceCode
             // 
-            this.linkLabel1.AutoSize = true;
-            this.linkLabel1.Location = new System.Drawing.Point(85, 59);
-            this.linkLabel1.Name = "linkLabel1";
-            this.linkLabel1.Size = new System.Drawing.Size(208, 13);
-            this.linkLabel1.TabIndex = 1;
-            this.linkLabel1.TabStop = true;
-            this.linkLabel1.Text = "https://github.com/amorphix/NetworkTool";
-            this.linkLabel1.LinkClicked += new System.Windows.Forms.LinkLabelLinkClickedEventHandler(this.linkLabel1_LinkClicked);
+            this.linkToSourceCode.AutoSize = true;
+            this.linkToSourceCode.Location = new System.Drawing.Point(85, 59);
+            this.linkToSourceCode.Name = "linkToSourceCode";
+            this.linkToSourceCode.Size = new System.Drawing.Size(105, 13);
+            this.linkToSourceCode.TabIndex = 1;
+            this.linkToSourceCode.TabStop = true;
+            this.linkToSourceCode.Text = "source code website";
+            this.linkToSourceCode.LinkClicked += new System.Windows.Forms.LinkLabelLinkClickedEventHandler(this.linkLabel1_LinkClicked);
             // 
-            // label2
+            // lastBuildDate
             // 
-            this.label2.AutoSize = true;
-            this.label2.Location = new System.Drawing.Point(318, 93);
-            this.label2.Name = "label2";
-            this.label2.Size = new System.Drawing.Size(61, 13);
-            this.label2.TabIndex = 2;
-            this.label2.Text = "05.02.2013";
-            this.label2.Click += new System.EventHandler(this.label2_Click);
+            this.lastBuildDate.AutoSize = true;
+            this.lastBuildDate.Location = new System.Drawing.Point(318, 93);
+            this.lastBuildDate.Name = "lastBuildDate";
+            this.lastBuildDate.Size = new System.Drawing.Size(53, 13);
+            this.lastBuildDate.TabIndex = 2;
+            this.lastBuildDate.Text = "build date";
             // 
             // label3
             // 
@@ -92,8 +91,8 @@
             this.ClientSize = new System.Drawing.Size(387, 117);
             this.Controls.Add(this.label4);
             this.Controls.Add(this.label3);
-            this.Controls.Add(this.label2);
-            this.Controls.Add(this.linkLabel1);
+            this.Controls.Add(this.lastBuildDate);
+            this.Controls.Add(this.linkToSourceCode);
             this.Controls.Add(this.label1);
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedDialog;
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
@@ -101,8 +100,7 @@
             this.MinimizeBox = false;
             this.Name = "AboutForm";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
-            this.Text = "About NetworkTool " + Properties.Resources.Version;
-            this.Load += new System.EventHandler(this.AboutForm_Load);
+            this.Text = "About NetworkTool";
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -111,8 +109,8 @@
         #endregion
 
         private System.Windows.Forms.Label label1;
-        private System.Windows.Forms.LinkLabel linkLabel1;
-        private System.Windows.Forms.Label label2;
+        private System.Windows.Forms.LinkLabel linkToSourceCode;
+        private System.Windows.Forms.Label lastBuildDate;
         private System.Windows.Forms.Label label3;
         private System.Windows.Forms.Label label4;
     }
