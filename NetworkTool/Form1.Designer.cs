@@ -53,9 +53,22 @@
             this.showNetworks = new System.Windows.Forms.Button();
             this.showFilters = new System.Windows.Forms.Button();
             this.showDrivers = new System.Windows.Forms.Button();
+            this.menuStrip1 = new System.Windows.Forms.MenuStrip();
+            this.toolStripMenuItem1 = new System.Windows.Forms.ToolStripMenuItem();
+            this.toolStripMenuItem2 = new System.Windows.Forms.ToolStripMenuItem();
+            this.toolStripContainer1 = new System.Windows.Forms.ToolStripContainer();
+            this.settingsToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.aboutToolStripMenuItem1 = new System.Windows.Forms.ToolStripMenuItem();
+            this.exitToolStripMenuItem1 = new System.Windows.Forms.ToolStripMenuItem();
+            this.configureIPAddressesToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.iPv6AddressesToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.notifyMenuStrip.SuspendLayout();
             this.Info.SuspendLayout();
             this.groupBox1.SuspendLayout();
+            this.menuStrip1.SuspendLayout();
+            this.toolStripContainer1.ContentPanel.SuspendLayout();
+            this.toolStripContainer1.TopToolStripPanel.SuspendLayout();
+            this.toolStripContainer1.SuspendLayout();
             this.SuspendLayout();
             // 
             // notifyTrayIcon
@@ -148,11 +161,12 @@
             // 
             // infoTextBox
             // 
+            this.infoTextBox.BackColor = System.Drawing.SystemColors.ControlLightLight;
             this.infoTextBox.Dock = System.Windows.Forms.DockStyle.Fill;
             this.infoTextBox.Location = new System.Drawing.Point(3, 16);
             this.infoTextBox.Name = "infoTextBox";
             this.infoTextBox.ReadOnly = true;
-            this.infoTextBox.Size = new System.Drawing.Size(429, 340);
+            this.infoTextBox.Size = new System.Drawing.Size(429, 344);
             this.infoTextBox.TabIndex = 1;
             this.infoTextBox.Text = "";
             // 
@@ -160,10 +174,11 @@
             // 
             this.Info.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
             | System.Windows.Forms.AnchorStyles.Left)));
+            this.Info.BackColor = System.Drawing.SystemColors.ButtonFace;
             this.Info.Controls.Add(this.infoTextBox);
             this.Info.Location = new System.Drawing.Point(12, 12);
             this.Info.Name = "Info";
-            this.Info.Size = new System.Drawing.Size(435, 359);
+            this.Info.Size = new System.Drawing.Size(435, 363);
             this.Info.TabIndex = 2;
             this.Info.TabStop = false;
             this.Info.Text = "Info";
@@ -184,7 +199,7 @@
             this.groupBox1.Location = new System.Drawing.Point(453, 12);
             this.groupBox1.MinimumSize = new System.Drawing.Size(151, 0);
             this.groupBox1.Name = "groupBox1";
-            this.groupBox1.Size = new System.Drawing.Size(151, 359);
+            this.groupBox1.Size = new System.Drawing.Size(151, 363);
             this.groupBox1.TabIndex = 3;
             this.groupBox1.TabStop = false;
             this.groupBox1.Text = "Commands";
@@ -269,16 +284,104 @@
             this.showDrivers.UseVisualStyleBackColor = true;
             this.showDrivers.Click += new System.EventHandler(this.showDrivers_Click);
             // 
+            // menuStrip1
+            // 
+            this.menuStrip1.BackColor = System.Drawing.SystemColors.ControlLight;
+            this.menuStrip1.Dock = System.Windows.Forms.DockStyle.None;
+            this.menuStrip1.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.toolStripMenuItem1,
+            this.toolStripMenuItem2});
+            this.menuStrip1.Location = new System.Drawing.Point(0, 0);
+            this.menuStrip1.Name = "menuStrip1";
+            this.menuStrip1.Size = new System.Drawing.Size(616, 24);
+            this.menuStrip1.TabIndex = 8;
+            this.menuStrip1.Text = "mainMenu";
+            this.menuStrip1.ItemClicked += new System.Windows.Forms.ToolStripItemClickedEventHandler(this.menuStrip1_ItemClicked);
+            // 
+            // toolStripMenuItem1
+            // 
+            this.toolStripMenuItem1.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.settingsToolStripMenuItem,
+            this.aboutToolStripMenuItem1,
+            this.exitToolStripMenuItem1});
+            this.toolStripMenuItem1.Name = "toolStripMenuItem1";
+            this.toolStripMenuItem1.Size = new System.Drawing.Size(37, 20);
+            this.toolStripMenuItem1.Text = "File";
+            this.toolStripMenuItem1.Click += new System.EventHandler(this.toolStripMenuItem1_Click);
+            // 
+            // toolStripMenuItem2
+            // 
+            this.toolStripMenuItem2.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.configureIPAddressesToolStripMenuItem,
+            this.iPv6AddressesToolStripMenuItem});
+            this.toolStripMenuItem2.Name = "toolStripMenuItem2";
+            this.toolStripMenuItem2.Size = new System.Drawing.Size(72, 20);
+            this.toolStripMenuItem2.Text = "Configure";
+            // 
+            // toolStripContainer1
+            // 
+            // 
+            // toolStripContainer1.ContentPanel
+            // 
+            this.toolStripContainer1.ContentPanel.AutoScroll = true;
+            this.toolStripContainer1.ContentPanel.BackColor = System.Drawing.SystemColors.ButtonFace;
+            this.toolStripContainer1.ContentPanel.Controls.Add(this.groupBox1);
+            this.toolStripContainer1.ContentPanel.Controls.Add(this.Info);
+            this.toolStripContainer1.ContentPanel.Size = new System.Drawing.Size(616, 381);
+            this.toolStripContainer1.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.toolStripContainer1.Location = new System.Drawing.Point(0, 0);
+            this.toolStripContainer1.Name = "toolStripContainer1";
+            this.toolStripContainer1.Size = new System.Drawing.Size(616, 405);
+            this.toolStripContainer1.TabIndex = 4;
+            this.toolStripContainer1.Text = "toolStripContainer1";
+            // 
+            // toolStripContainer1.TopToolStripPanel
+            // 
+            this.toolStripContainer1.TopToolStripPanel.Controls.Add(this.menuStrip1);
+            // 
+            // settingsToolStripMenuItem
+            // 
+            this.settingsToolStripMenuItem.Name = "settingsToolStripMenuItem";
+            this.settingsToolStripMenuItem.Size = new System.Drawing.Size(152, 22);
+            this.settingsToolStripMenuItem.Text = "Settings";
+            // 
+            // aboutToolStripMenuItem1
+            // 
+            this.aboutToolStripMenuItem1.Name = "aboutToolStripMenuItem1";
+            this.aboutToolStripMenuItem1.Size = new System.Drawing.Size(152, 22);
+            this.aboutToolStripMenuItem1.Text = "About";
+            this.aboutToolStripMenuItem1.Click += new System.EventHandler(this.aboutToolStripMenuItem1_Click);
+            // 
+            // exitToolStripMenuItem1
+            // 
+            this.exitToolStripMenuItem1.Name = "exitToolStripMenuItem1";
+            this.exitToolStripMenuItem1.Size = new System.Drawing.Size(152, 22);
+            this.exitToolStripMenuItem1.Text = "Exit";
+            this.exitToolStripMenuItem1.Click += new System.EventHandler(this.exitToolStripMenuItem1_Click);
+            // 
+            // configureIPAddressesToolStripMenuItem
+            // 
+            this.configureIPAddressesToolStripMenuItem.Name = "configureIPAddressesToolStripMenuItem";
+            this.configureIPAddressesToolStripMenuItem.Size = new System.Drawing.Size(152, 22);
+            this.configureIPAddressesToolStripMenuItem.Text = "IPv4 Addresses";
+            this.configureIPAddressesToolStripMenuItem.Click += new System.EventHandler(this.configureIPAddressesToolStripMenuItem_Click);
+            // 
+            // iPv6AddressesToolStripMenuItem
+            // 
+            this.iPv6AddressesToolStripMenuItem.Name = "iPv6AddressesToolStripMenuItem";
+            this.iPv6AddressesToolStripMenuItem.Size = new System.Drawing.Size(152, 22);
+            this.iPv6AddressesToolStripMenuItem.Text = "IPv6 Addresses";
+            // 
             // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.SystemColors.InactiveCaption;
-            this.ClientSize = new System.Drawing.Size(616, 383);
-            this.Controls.Add(this.groupBox1);
-            this.Controls.Add(this.Info);
+            this.ClientSize = new System.Drawing.Size(616, 405);
+            this.Controls.Add(this.toolStripContainer1);
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedSingle;
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
+            this.MainMenuStrip = this.menuStrip1;
             this.Name = "Form1";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "NetworkTool";
@@ -286,6 +389,13 @@
             this.notifyMenuStrip.ResumeLayout(false);
             this.Info.ResumeLayout(false);
             this.groupBox1.ResumeLayout(false);
+            this.menuStrip1.ResumeLayout(false);
+            this.menuStrip1.PerformLayout();
+            this.toolStripContainer1.ContentPanel.ResumeLayout(false);
+            this.toolStripContainer1.TopToolStripPanel.ResumeLayout(false);
+            this.toolStripContainer1.TopToolStripPanel.PerformLayout();
+            this.toolStripContainer1.ResumeLayout(false);
+            this.toolStripContainer1.PerformLayout();
             this.ResumeLayout(false);
 
         }
@@ -315,6 +425,15 @@
         private System.Windows.Forms.Button showTracing;
         private System.Windows.Forms.Button showInterfaces;
         private System.Windows.Forms.Button showHostedNetworkInfo;
+        private System.Windows.Forms.MenuStrip menuStrip1;
+        private System.Windows.Forms.ToolStripMenuItem toolStripMenuItem1;
+        private System.Windows.Forms.ToolStripMenuItem toolStripMenuItem2;
+        private System.Windows.Forms.ToolStripContainer toolStripContainer1;
+        private System.Windows.Forms.ToolStripMenuItem settingsToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem aboutToolStripMenuItem1;
+        private System.Windows.Forms.ToolStripMenuItem exitToolStripMenuItem1;
+        private System.Windows.Forms.ToolStripMenuItem configureIPAddressesToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem iPv6AddressesToolStripMenuItem;
     }
 }
 

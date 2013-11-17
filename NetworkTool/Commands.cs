@@ -26,5 +26,27 @@ namespace NetworkTool
         public static readonly String HostedNetworks = "netsh wlan show hostednetwork";
         public static readonly String ExplicitCredentials = "netsh wlan show allowexplicitcreds";
         public static readonly String BlockedNetworks = "netsh wlan show blockednetworks";
+
+        // ipv4 commands
+        //public static readonly String BlockedNetworks = "netsh wlan show blockednetworks";
+
+        public static string getStaticIPv4(string name, string ip, string subnet) {
+            return "netsh interface ip set address name=\"" + name + "\" static " + ip + " " + subnet;
+         }
+
+        public static string getDynamicIPv4(string name)
+        {
+            return "netsh interface ip set address name=\"" + name + "\" source=dhcp ";
+        }
+
+        public static string getDNS1(string name, string ip)
+        {
+            return "netsh interface ip set dns \"" + name + "\" static " + ip;
+        }
+        
+        public static string getDNS2(string name, string ip)
+        {
+            return "netsh interface ip add dns \"" + name + "\" " + ip;
+        }
     }
 }

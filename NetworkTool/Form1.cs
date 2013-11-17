@@ -360,5 +360,32 @@ namespace NetworkTool
             }
             catch (Exception ex) { MessageBox.Show(ex.Message); }
         }
+
+        private void menuStrip1_ItemClicked(object sender, ToolStripItemClickedEventArgs e)
+        {
+
+        }
+
+        private void toolStripMenuItem1_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void exitToolStripMenuItem1_Click(object sender, EventArgs e)
+        {
+            Application.Exit();
+        }
+
+        private void aboutToolStripMenuItem1_Click(object sender, EventArgs e)
+        {
+            a = new AboutForm();
+            a.ShowDialog();
+        }
+
+        private void configureIPAddressesToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            ConfigureIP4 c = new ConfigureIP4();
+            c.Show();
+        }
     }
 }
