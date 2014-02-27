@@ -1,4 +1,4 @@
-###Latest release - v1.3
+###Latest release - v1.3.1
 Just copy binary file in /bin/NetworkTool.exe and you are ready to use it :)
 
 [Download latest version here](https://github.com/amorphix/NetworkTool/releases/tag/v1.3)
@@ -28,6 +28,12 @@ v1.3.0
 * Shows main window UI with basic execution of commands
 * All strings moved to another special class
 * Date, website and version is now updated form resource file
+
+v1.3.1
+* Main GUI was removed
+* Added an config file for storing settings
+* Options menu updated
+* Restructured code
 
 ### Screenshots
 ![](http://i.imgur.com/OL5caX1.png "")

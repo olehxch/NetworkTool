@@ -12,41 +12,74 @@ namespace NetworkTool
 {
     public partial class OptionsForm : Form
     {
-        public delegate void dSetSSIDKEY(String ssid, String key);
-        public delegate String[] dGetSSIDKEY();
-        dSetSSIDKEY d;
-        String[] s;
-        public OptionsForm(dSetSSIDKEY dSet, dGetSSIDKEY dGet)
+        public OptionsForm()
         {
-            this.d = dSet;
-            s = dGet();
             InitializeComponent();
         }
 
+        /*
+         * Close options window
+         */ 
         private void btClose_Click(object sender, EventArgs e)
         {
-            // close options form
             this.Close();
         }
 
+        /*
+         * Save changed settings
+         */ 
         private void btOK_Click(object sender, EventArgs e)
         {
-            // accept changes and update ssid/key
-            d(tbSSID.Text, tbKey.Text);
+            Global.WifiName = tbWifiName.Text;
+            Global.WifiPassword = tbPassword.Text;
+
+            if (rbYes.Checked) Global.Autostart = true;
+            else Global.Autostart = false;
+             
             this.Close();
         }
 
+        /*
+         * Load saved settings
+         */
         private void OptionsForm_Load(object sender, EventArgs e)
         {
-            tbSSID.Text = s[0];
-            tbKey.Text = s[1];
+            tbWifiName.Text = Global.WifiName;
+            tbPassword.Text = Global.WifiPassword;
+
+            if (Global.Autostart) rbYes.Checked = true;
+            else rbNo.Checked = true;
         }
 
-        private void button1_Click(object sender, EventArgs e)
+        /*
+         * Validate wifi name
+         */
+        private void tbWifiName_TextChanged(object sender, EventArgs e)
         {
-            // restore defaults
-            tbSSID.Text = "MSVWiFi";
-            tbKey.Text = "netshkeyadmin";
+            if (tbWifiName.Text == "")
+            {
+                tbWifiName.BackColor = Color.OrangeRed;
+                btOK.Enabled = false;
+            } else {
+                tbWifiName.BackColor = Color.White;
+                if (tbWifiName.Text != "" && tbPassword.Text != "")
+                    btOK.Enabled = true;
+            }
+        }
+
+        /*
+         * Validate wifi password
+         */
+        private void tbPassword_TextChanged(object sender, EventArgs e)
+        {
+            if (tbPassword.Text.Length < 8) {
+                tbPassword.BackColor = Color.OrangeRed;
+                btOK.Enabled = false;
+            } else {
+                tbPassword.BackColor = Color.White;
+                if (tbWifiName.Text != "" && tbPassword.Text.Length >= 8)
+                    btOK.Enabled = true;
+            }
         }
     }
 }

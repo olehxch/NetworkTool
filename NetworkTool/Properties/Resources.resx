@@ -137,11 +137,11 @@
     <value>..\ico\stat_sys_signal_4.ico;System.Drawing.Icon, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
   <data name="Version" xml:space="preserve">
-    <value>v1.3</value>
+    <value>v1.4</value>
     <comment>Show program version</comment>
   </data>
   <data name="LastBuildDate" xml:space="preserve">
-    <value>16.11.2013</value>
+    <value>27.02.2013</value>
     <comment>Last build date</comment>
   </data>
   <data name="Website" xml:space="preserve">
