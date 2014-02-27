@@ -29,7 +29,7 @@ v1.3.0
 * All strings moved to another special class
 * Date, website and version is now updated form resource file
 
-v1.3.1
+v1.4
 * Main GUI was removed
 * Added an config file for storing settings
 * Options menu updated
